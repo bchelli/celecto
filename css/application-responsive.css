@@ -1,0 +1,9 @@
+@media (max-width: 979px){
+  body {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+@media (max-width: 767px){
+  .threads-list .thread{height:auto}
+}
