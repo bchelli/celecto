@@ -1,4 +1,4 @@
-define(['app/models/star'], function(Star){
+define(['app/models/thread/star'], function(Star){
   'use strict';
 
   return Backbone.Model.extend({
@@ -6,7 +6,7 @@ define(['app/models/star'], function(Star){
 
     urlRoot:'/api/thread/Id/',
 
-    setCommentStared: function(commentId, memberId, state){
+    setCommentStared: function(commentId, state){
       var self = this
         , comments = self.get('Comments')
         , comment = _.find(comments, function(com){return com.Id==commentId})
@@ -22,7 +22,6 @@ define(['app/models/star'], function(Star){
       var star = new Star({
         SubjectId:self.get('Subject').SubjectId,
         CommentId:commentId,
-        MemberId:memberId,
         IsPutStar:state
       });
       star.save();

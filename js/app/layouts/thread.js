@@ -31,7 +31,7 @@ define(['libs/template'], function(tmpl){
         , state = $star.hasClass('stared')
         , commentId = $star.attr('data-comment-id')
         ;
-      this.model.setCommentStared(commentId, 'MarieId', !state);
+      this.model.setCommentStared(commentId, !state);
       this.render();
     }
 

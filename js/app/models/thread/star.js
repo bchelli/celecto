@@ -1,4 +1,4 @@
-define(['app/models/star'], function(Star){
+define(function(){
   'use strict';
 
   return Backbone.Model.extend({
