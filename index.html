@@ -133,9 +133,10 @@
           </div>
       
           <div id="comment" class="row-fluid">
-            <div class="row-fluid ">
-              <input type="text" class="input-xlarge span12" placeholder="Participer !">
-            </div>
+            <form class="row-fluid form-comment">
+              <input id="add-comment" type="text" class="input-xlarge span12" placeholder="Participer !">
+              <input type="submit" value="envoyer" />
+            </form>
           </div>
 
         </div><!-- #thread -->
@@ -201,6 +202,7 @@
               </label>
             </div>
           </div>
+          <a class="open-signup">ou créer votre compte</a>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
@@ -208,6 +210,46 @@
         </div>
       </form>
     </script><!-- #login -->
+
+    <script type="text/x-handlebars-template" id="signup">
+      <form class="form-horizontal form-signup">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3 id="loginPopupLabel">Créer mon compte</h3>
+        </div>
+        <div class="modal-body">
+          <div class="control-group">
+            <label class="control-label" for="signupNickname">Nickname</label>
+            <div class="controls">
+              <input type="text" id="signupNickname" placeholder="Nickname" value="{{nickname}}">
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="signupEmail">Email</label>
+            <div class="controls">
+              <input type="email" id="signupEmail" placeholder="Email" value="{{email}}">
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="signupPassword">Password</label>
+            <div class="controls">
+              <input type="password" id="signupPassword" placeholder="Password">
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="signupRePassword">Re Password</label>
+            <div class="controls">
+              <input type="password" id="signupRePassword" placeholder="Password">
+              {{#error}}<p class="text-error">Mauvais email ou mot de passe.</p>{{/error}}
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+          <button type="submit" class="btn btn-primary">Créer mon compte</button>
+        </div>
+      </form>
+    </script><!-- #signup -->
 
   </body>
 </html>

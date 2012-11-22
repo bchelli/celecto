@@ -1,4 +1,4 @@
-define(['libs/template', 'app/models/member', 'app/views/login', 'app/models/page'], function(tmpl, member, loginView, page){
+define(['libs/template', 'app/models/member', 'app/views/login', 'libs/page'], function(tmpl, member, loginView, page){
   'use strict';
 
   var HeaderView = Backbone.View.extend({
@@ -12,7 +12,9 @@ define(['libs/template', 'app/models/member', 'app/views/login', 'app/models/pag
       var self = this
         ;
       member.on('change:Id', self.render, self);
-      page.on('change:page', self.render, self);
+      page.listenChange(function(){
+        self.render();
+      });
       self.render();
     },
 

@@ -1,7 +1,12 @@
-define(['libs/template', 'app/models/page'], function(tmpl, page){
+define(['libs/template', 'libs/page'], function(tmpl, page){
   'use strict';
 
   var HomeLayout = Backbone.View.extend({
+
+    initialize:function(){
+      var self = this
+        ;
+    },
 
     render:function(){
 
@@ -10,7 +15,7 @@ define(['libs/template', 'app/models/page'], function(tmpl, page){
         template:'about'
       });
       
-      page.setPage('about');
+      page.setPage('about', this);
 
     }
 

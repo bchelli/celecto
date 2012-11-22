@@ -3,7 +3,9 @@ define(['libs/template', 'app/models/member'], function(tmpl, member){
 
   var LoginView = Backbone.View.extend({
     events:{
-      'submit .form-login':'submitLogin'
+      'click .open-signup':'openSignup',
+      'submit .form-login':'submitLogin',
+      'submit .form-signup':'submitSignup'
     },
 
     initialize: function(){
@@ -11,11 +13,22 @@ define(['libs/template', 'app/models/member'], function(tmpl, member){
         ;
       member.on('login-error', function(){
         self.render({
-          login: self.$login.val(),
+          login: self.$email.val(),
           error:true
         });
       });
       member.on('login-success', function(){
+        self.close();
+      });
+      member.on('signup-error', function(){
+        self.render({
+          template: 'signup',
+          nickname: this.$signupNickname.val(),
+          email: this.$signupEmail.val(),
+          error:true
+        });
+      });
+      member.on('signup-success', function(){
         self.close();
       });
       self.render();
@@ -24,12 +37,30 @@ define(['libs/template', 'app/models/member'], function(tmpl, member){
     submitLogin: function(ev){
       ev.preventDefault();
       member.signin({
-        email: this.$login.val(),
+        email: this.$email.val(),
         password: this.$password.val()
       });
     },
 
+    openSignup:function(ev){
+      ev.preventDefault();
+      this.render({
+        template:'signup'
+      });
+    },
+
+    submitSignup: function(ev){
+      ev.preventDefault();
+      member.signup({
+        Nickname: this.$signupNickname.val(),
+        Email: this.$signupEmail.val(),
+        Password: this.$signupPassword.val(),
+        RePassword: this.$signupRePassword.val()
+      });
+    },
+
     open:function(){
+      this.render();
       this.$el.modal();
     },
 
@@ -43,15 +74,20 @@ define(['libs/template', 'app/models/member'], function(tmpl, member){
 
       tmpl.render({
         $el:this.$el,
-        template:'login',
+        template:opt.template || 'login',
         data:{
           login:opt.login || '',
           error:opt.error || false
         }
       });
 
-      this.$login = this.$el.find('#loginEmail');
+      this.$email = this.$el.find('#loginEmail');
       this.$password = this.$el.find('#loginPassword');
+
+      this.$signupNickname = this.$el.find('#signupNickname');
+      this.$signupEmail = this.$el.find('#signupEmail');
+      this.$signupPassword = this.$el.find('#signupPassword');
+      this.$signupRePassword = this.$el.find('#signupRePassword');
 
     }
 

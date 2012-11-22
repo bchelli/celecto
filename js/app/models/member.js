@@ -1,4 +1,4 @@
-define(['app/models/member/signin', 'app/models/member/signout'], function(MemberSignin, MemberSignout){
+define(['app/models/member/signin', 'app/models/member/signout', 'app/models/member/signup'], function(MemberSignin, MemberSignout, MemberSignup){
   'use strict';
 
   var Member = Backbone.Model.extend({
@@ -26,6 +26,19 @@ define(['app/models/member/signin', 'app/models/member/signout'], function(Membe
       }).on('sync', function(){
         self.set(ms.toJSON());
         self.trigger('login-success');
+      });
+      ms.save();
+    },
+
+    signup: function(data){
+      var self = this
+        , ms = new MemberSignup(data)
+        ;
+      ms.on('error', function(){
+        self.trigger('signup-error');
+      }).on('sync', function(){
+        self.set(ms.toJSON());
+        self.trigger('signup-success');
       });
       ms.save();
     },

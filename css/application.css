@@ -3,7 +3,7 @@ body {
   padding-bottom: 40px;
 }
 
-.form-login {margin:0;}
+.form-login, .form-signup {margin:0;}
 
 /*
  List of threads

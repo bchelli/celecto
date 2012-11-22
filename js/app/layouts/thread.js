@@ -1,14 +1,19 @@
-define(['libs/template', 'app/models/member', 'app/models/page'], function(tmpl, member, page){
+define(['libs/template', 'app/models/member', 'libs/page'], function(tmpl, member, page){
   'use strict';
 
   var HomeLayout = Backbone.View.extend({
-  
+
     events:{
+      'submit .form-comment':'addComment',
       'click .star':'changeStarState'
     },
 
     initialize:function(){
-      member.on('change:Id', this.render, this);
+      var self = this
+        ;
+      member.on('change:Id', function(){
+        if(page.isViewActive(self)) self.render();
+      });
     },
 
     render:function(opt){
@@ -28,8 +33,20 @@ define(['libs/template', 'app/models/member', 'app/models/page'], function(tmpl,
         }
       });
 
-      page.setPage('offres-du-jour');
+      page.setPage('offres-du-jour', this);
 
+    },
+
+    addComment: function(ev){
+      ev.preventDefault();
+      var self = this
+        , $comment = self.$el.find('#add-comment')
+        , comment = $comment.val()
+        ;
+      member.needLoggedMember(function(){
+        self.model.addComment(comment);
+        self.render();
+      });
     },
 
     changeStarState: function(ev){

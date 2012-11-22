@@ -10,13 +10,12 @@ define(function(){
     openThread: function (thread) {
       require(['app/layouts/thread', 'app/models/thread'], function(threadLayout, Thread) {
         var th = new Thread({'Id':thread});
-        th.fetch({
-          success:function(){
-            threadLayout.render({
-              model:th
-            });
-          }
-        })
+        th.on('change', function(){
+          threadLayout.render({
+            model:th
+          });
+        });
+        th.fetch();
       });
     }
 
