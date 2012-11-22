@@ -12,14 +12,13 @@
     <link rel="stylesheet" href="css/application-responsive.css?##VERSION##" />
 
     <!-- JAVASCRIPTS -->
+    <script src="vendor/mustache/mustache.0.7.0.js?##VERSION##"></script>
     <script src="vendor/require/require.2.1.1.min.js?##VERSION##"></script>
     <script src="vendor/underscore/underscore.1.4.2.min.js?##VERSION##"></script>
     <script src="vendor/jquery/jquery.1.8.3.min.js?##VERSION##"></script>
-    <script src="vendor/handlebar/handlebars-1.0.rc.1.js?##VERSION##"></script>
     <script src="vendor/backbone/backbone.0.9.2.min.js?##VERSION##"></script>
     <script src="vendor/bootstrap/js/bootstrap.min.js?##VERSION##"></script>
     <script src="js/main.js?##VERSION##"></script>
-
   </head>
   <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -128,10 +127,10 @@
                 <div class="span8 pull-left">
                   <i class="icon-eye-close"></i><strong><span> @{{AuthorNickname}}</span></strong>
                 </div>
-                <div class="span3" style="text-align: right">
+                <a class="span3 star{{#isStared}} stared{{/isStared}}" data-comment-id="{{Id}}" data-subject-id="{{thread.Subject.SubjectId}}" style="text-align: right">
                   <span>{{Stars.length}}</span>
-                  <i class="icon-star-empty"></i>
-                </div>
+                  <i class="icon-star{{^isStared}}-empty{{/isStared}}"></i>
+                </a>
                 <div class="span1">
                   <span>{{CreatedSince}}</span>
                 </div>
