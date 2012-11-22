@@ -1,4 +1,4 @@
-define(['app/routers/home', 'app/routers/thread'], function(HomeRouter, ThreadRouter){
+define(['app/routers/home', 'app/routers/thread', 'app/models/member'], function(HomeRouter, ThreadRouter, member){
   "use strict";
 
   return {
