@@ -9,7 +9,7 @@ body {
  List of threads
  */
 .threads-list{}
-  .threads-list .thread{height:450px}
+  .threads-list .thread{height:450px;margin-bottom:25px;}
     .threads-list .thread .img{}
     .threads-list .thread .logo{width:30px;height:30px;}
 

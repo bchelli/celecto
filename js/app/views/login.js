@@ -1,7 +1,7 @@
 define(['libs/template', 'app/models/member'], function(tmpl, member){
   'use strict';
 
-  var LoginModel = Backbone.View.extend({
+  var LoginView = Backbone.View.extend({
     events:{
       'submit .form-login':'submitLogin'
     },
@@ -18,6 +18,7 @@ define(['libs/template', 'app/models/member'], function(tmpl, member){
       member.on('login-success', function(){
         self.close();
       });
+      self.render();
     },
 
     submitLogin: function(ev){
@@ -33,9 +34,7 @@ define(['libs/template', 'app/models/member'], function(tmpl, member){
     },
 
     close:function(){
-      this.$el.modal({
-        show:false
-      });
+      this.$el.modal('hide');
     },
 
     render:function(opt){
@@ -58,5 +57,5 @@ define(['libs/template', 'app/models/member'], function(tmpl, member){
 
   });
   
-  return new LoginModel({el:'#loginPopup'});
+  return new LoginView({el:'#loginPopup'});
 });

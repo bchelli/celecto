@@ -1,10 +1,14 @@
-define(['libs/template', 'app/models/member'], function(tmpl, member){
+define(['libs/template', 'app/models/member', 'app/models/page'], function(tmpl, member, page){
   'use strict';
 
   var HomeLayout = Backbone.View.extend({
   
     events:{
       'click .star':'changeStarState'
+    },
+
+    initialize:function(){
+      member.on('change:Id', this.render, this);
     },
 
     render:function(opt){
@@ -23,6 +27,8 @@ define(['libs/template', 'app/models/member'], function(tmpl, member){
           }
         }
       });
+
+      page.setPage('offres-du-jour');
 
     },
 

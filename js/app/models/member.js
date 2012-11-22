@@ -1,4 +1,4 @@
-define(['app/models/member/signin'], function(MemberSignin){
+define(['app/models/member/signin', 'app/models/member/signout'], function(MemberSignin, MemberSignout){
   'use strict';
 
   var Member = Backbone.Model.extend({
@@ -30,6 +30,19 @@ define(['app/models/member/signin'], function(MemberSignin){
       ms.save();
     },
 
+    signout: function(){
+      var self = this
+        , ms = new MemberSignout()
+        ;
+      ms.on('error', function(){
+        self.trigger('signout-error');
+      }).on('sync', function(){
+        self.clear();
+        self.trigger('signout-success');
+      });
+      ms.save();
+    },
+
     isLogged: function(){
       return !!this.get('Id');
     },
@@ -52,7 +65,7 @@ define(['app/models/member/signin'], function(MemberSignin){
         cb && cb();
       } else {
         // not logged
-        self.pushCallback(cb);
+        if(cb) self.pushCallback(cb);
         self.trigger('need-login');
       }
     }

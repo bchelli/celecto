@@ -1,9 +1,10 @@
-define(['app/routers/home', 'app/routers/thread', 'app/models/member', 'app/views/login'], function(HomeRouter, ThreadRouter, member, loginView){
+define(['app/routers/about', 'app/routers/home', 'app/routers/thread', 'app/models/member', 'app/views/login', 'app/views/header'], function(AboutRouter, HomeRouter, ThreadRouter, member, loginView, headerView){
   "use strict";
 
   return {
 
     routers: {
+      about: new AboutRouter(),
       home: new HomeRouter(),
       thread: new ThreadRouter()
     },
@@ -11,7 +12,6 @@ define(['app/routers/home', 'app/routers/thread', 'app/models/member', 'app/view
     initialize: function () {
       this.startRouting();
       member.on('need-login', function(){
-        loginView.render();
         loginView.open();
       });
     },

@@ -3,17 +3,14 @@ define(['libs/template', 'app/models/page'], function(tmpl, page){
 
   var HomeLayout = Backbone.View.extend({
 
-    render:function(opt){
+    render:function(){
 
       tmpl.render({
         $el:this.$el,
-        template:'threads-list',
-        data:{
-          threads:opt.model.toJSON()
-        }
+        template:'about'
       });
       
-      page.setPage('offres-du-jour');
+      page.setPage('about');
 
     }
 
