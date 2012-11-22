@@ -1,4 +1,4 @@
-define(['libs/template'], function(tmpl){
+define(['libs/template', 'app/models/member'], function(tmpl, member){
   'use strict';
 
   var HomeLayout = Backbone.View.extend({
@@ -19,7 +19,7 @@ define(['libs/template'], function(tmpl){
         data:{
           thread:opt.model.toJSON(),
           isStared:function(){
-            return _.contains(this.Stars, 'MarieId');
+            return _.contains(this.Stars, member.get('Id'));
           }
         }
       });
@@ -27,12 +27,15 @@ define(['libs/template'], function(tmpl){
     },
 
     changeStarState: function(ev){
-      var $star = $(ev.currentTarget)
+      var self = this
+        , $star = $(ev.currentTarget)
         , state = $star.hasClass('stared')
         , commentId = $star.attr('data-comment-id')
         ;
-      this.model.setCommentStared(commentId, !state);
-      this.render();
+      member.needLoggedMember(function(){
+        self.model.setCommentStared(commentId, !state);
+        self.render();
+      });
     }
 
   });

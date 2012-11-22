@@ -1,4 +1,4 @@
-define(['app/routers/home', 'app/routers/thread', 'app/models/member'], function(HomeRouter, ThreadRouter, member){
+define(['app/routers/home', 'app/routers/thread', 'app/models/member', 'app/views/login'], function(HomeRouter, ThreadRouter, member, loginView){
   "use strict";
 
   return {
@@ -10,6 +10,10 @@ define(['app/routers/home', 'app/routers/thread', 'app/models/member'], function
 
     initialize: function () {
       this.startRouting();
+      member.on('need-login', function(){
+        loginView.render();
+        loginView.open();
+      });
     },
 
     startRouting: function(){

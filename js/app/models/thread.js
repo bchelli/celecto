@@ -1,4 +1,4 @@
-define(['app/models/thread/star'], function(Star){
+define(['app/models/thread/star', 'app/models/member'], function(Star, member){
   'use strict';
 
   return Backbone.Model.extend({
@@ -14,9 +14,9 @@ define(['app/models/thread/star'], function(Star){
 
       // update the model locally
       if(state) {
-        comment.Stars.push(memberId)
+        comment.Stars.push(member.get('Id'))
         comment.Stars = _.uniq(comment.Stars);
-      } else comment.Stars = _.without(comment.Stars, memberId);
+      } else comment.Stars = _.without(comment.Stars, member.get('Id'));
       
       // update the model server side
       var star = new Star({
