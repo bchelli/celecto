@@ -2,6 +2,6 @@ define(function(){
   'use strict';
 
   return Backbone.Model.extend({
-    url:'/api/membership/signin'
+    url:'api/membership/signin'
   });
 });
