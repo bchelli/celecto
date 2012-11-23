@@ -114,11 +114,12 @@
                   <div class="span8 pull-left">
                     <i class="icon-eye-close"></i><strong><span> @{{AuthorNickname}}</span></strong>
                   </div>
-                  <a class="span3 star{{#isStared}} stared{{/isStared}}" data-comment-id="{{Id}}" data-subject-id="{{thread.Subject.SubjectId}}" style="text-align: right">
-                    <span>{{Stars.length}}</span>
-                    <i class="icon-star{{^isStared}}-empty{{/isStared}}"></i>
-                  </a>
-                  <div class="span1">
+                  <div class="span4 comment-infos">
+                    <a class="star{{#isStared}} stared{{/isStared}}" data-comment-id="{{Id}}" data-subject-id="{{thread.Subject.SubjectId}}" style="text-align: right">
+                      <span>{{Stars.length}}</span>
+                      <i class="icon-star{{^isStared}}-empty{{/isStared}}"></i>
+                    </a>
+                    -
                     <span>{{CreatedSince}}</span>
                   </div>
                 </div>
@@ -136,7 +137,8 @@
             <div id="comment" class="row-fluid">
               <form class="row-fluid form-comment">
                 <input id="add-comment" type="text" class="input-xlarge span10" placeholder="Participer !">
-                <input type="submit" value="Envoyer" class="btn btn-primary span2 pull-right" />
+                <input type="submit" value="Envoyer" class="btn btn-primary span2 pull-right add-comment-btn" />
+                <span class="comment-limit"></span>
               </form>
             </div>
   
@@ -175,7 +177,20 @@
     </script><!-- #header-tmpl -->
 
     <script type="text/x-handlebars-template" id="about">
-      <h1>About</h1>
+      <h3>CElectO <small>c'est quoi ?</small></h3><br />
+      <p style="text-align:justify">
+        CElectO est une communauté qui se conseille, s’organise et s’entraide dans le chaos des offres quotidiennes.<br />
+        Chaque jour, plusieurs offres apparaissent sur internet. CElecto propose à sa communauté un sommaire quotidien (daily digest ) des offres les plus intéressantes qui viennent d’apparaitre sur le net. Les offres qui cachent des vices, des fausses promotions, des pratiques non-éthiques seront démasquées par la communauté. D’autre part, les offres de valeur seront reconnues et recommandées.C’est la communauté qui décide ! <br />
+        Sur CElectO, chaque offre aura son espace de discussion dédiée. Celecto intégre un système de micro-message simple d’utilisation. Chacun peut donner son avis, poser des questions, partager une information, alerter les autres membres…
+      </p>
+      <br />
+      <h3>CElectO <small>Pourquoi ?</small></h3><br />
+      <p style="text-align:justify">
+        Un des fondements d’internet, c’est le partage : partage de connaissances, de documents, de photos, de vidéos, de nouvelles, d’informations personnelles et coopératives…<br />
+        Mais la partie d’internet dédiée à l’e-commerce est passée à côté de cette valeur: L’internaute est seul face à l’offre, il est submergé de questions: Le sérieux de la marque, la qualité du produit, le prix le plus bas sur internet, l’utilité, la garantie… Cette  ambigüité n’est pas bénéfique pour l’internaute,  car elle altère sa prise de décision.  Mais pourquoi les sites marchands veulent isoler l’internaute ? Est-ce un privilège ? Est-ce une stratégie : Diviser pour régner ?  La réponse se trouve dans la nature de leur activité : le commerce, ils sont plutôt occupés à négocier, à déployer leurs plans marketing et à réduire leurs coûts …<br />
+        Pour les sites d’e-commerce classiques, les internautes ont un gros avantage, les offres sont quasi-illimitées dans le temps.  Assez pour que l’internaute demande  l’avis d’amis, famille et collègue. Il bénéficie aussi d’un autre atout, les comparateurs de prix ont eu le temps de capturer l’offre, et les sites spécialisés à évaluer le produit.de chercher sur les sites spécialisés et les comparateurs prix qui  En plus on est dans un achat planifié<br />
+        Mais aujourd’hui on a de plus en plus d’offres volatiles, à durée. Dans ce cas, l’internaute perd ses atouts : le temps est comptés, le stock est limité, les comparateur de prix n’ont pas eu le temps de capturer le prix de cette offre vue sa nature éphémère.  En plus l’internaute est dans une approche opportuniste qui va altérer encore sa prise de décision.  Les  internautes face ce genre d’offre vont prendre l’initiative d’évaluer l’offre : Le prix,  La qualité du produit … C’est de ce constat qu’est née le concept de CElectO : Offrir au internaute dans le cadre d’une communauté un espace pour partager autour des offres volatiles.
+      </p>
     </script><!-- #about -->
 
     <script type="text/x-handlebars-template" id="login">

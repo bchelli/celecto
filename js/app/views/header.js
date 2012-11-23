@@ -43,7 +43,7 @@ define(['libs/template', 'app/models/member', 'app/views/login', 'libs/page'], f
               url:'#'
             },
             {
-              label:'About',
+              label:'A propos',
               id:'about',
               url:'#/about'
             }

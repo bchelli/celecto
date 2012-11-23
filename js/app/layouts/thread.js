@@ -1,10 +1,13 @@
 define(['libs/template', 'app/models/member', 'libs/page'], function(tmpl, member, page){
   'use strict';
 
+  var maxLength = 160;
+
   var HomeLayout = Backbone.View.extend({
 
     events:{
       'submit .form-comment':'addComment',
+      'keyup #add-comment':'updateCounter',
       'click .star':'changeStarState'
     },
 
@@ -34,6 +37,7 @@ define(['libs/template', 'app/models/member', 'libs/page'], function(tmpl, membe
       });
 
       page.setPage('offres-du-jour', this);
+      this.updateCounter();
 
     },
 
@@ -42,11 +46,33 @@ define(['libs/template', 'app/models/member', 'libs/page'], function(tmpl, membe
       var self = this
         , $comment = self.$el.find('#add-comment')
         , comment = $comment.val()
+        , len = comment.length
         ;
-      member.needLoggedMember(function(){
-        self.model.addComment(comment);
-        self.render();
-      });
+      if(len<=maxLength) {
+        member.needLoggedMember(function(){
+          self.model.addComment(comment);
+          self.render();
+        });
+      }
+    },
+
+    updateCounter:function(){
+      var self = this
+        , $comment = self.$el.find('#add-comment')
+        , $commentLimit = self.$el.find('.comment-limit')
+        , $addCommentBtn = self.$el.find('.add-comment-btn')
+        , comment = $comment.val()
+        , len = comment.length
+        ;
+
+      $commentLimit.html(len+'/'+maxLength);
+      if(len>maxLength) {
+        $commentLimit.addClass('text-error');
+        $addCommentBtn.attr('disabled', 'disabled');
+      } else {
+        $commentLimit.removeClass('text-error');
+        $addCommentBtn.removeAttr('disabled');
+      }
     },
 
     changeStarState: function(ev){
