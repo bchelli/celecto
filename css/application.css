@@ -20,5 +20,8 @@ body {
     .threads-list .thread .logo{width:30px;height:30px;}
 
 
+.hero-unit{padding:0;background:#F7F7F7}
 .thread-detail {}
   .thread-detail .img{width:100%}
+#thread {margin: 10px 30px;}
+  #thread form {margin: 10px 0 0;}

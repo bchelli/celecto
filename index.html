@@ -70,7 +70,7 @@
       <div class="row">
 
         <!-- Thread detail -->
-        <div class="span6 thread-detail">
+        <div class="thread-detail span6">
           <div class="page-header">
             <h1><img src="{{thread.Subject.Origin.Logo}}" style="width: 40px; height: 40px"> {{thread.Subject.Title}}</h1>
           </div>
@@ -92,54 +92,56 @@
         </div><!-- .span6 -->
       
         <!-- Discussion  & previous -->
-        <div id="thread" class="span6">
-          <div class="row-fluid">
-
-            <!-- Header discussion -->
+        <div class="hero-unit span6">
+          <div id="thread">
             <div class="row-fluid">
-              <div class="span6">
-                <h4>Commentaires: {{thread.Comments.length}} </h4>
-              </div>
-            </div>
-            <div class="row-fluid">
-              <hr style="margin: 5px 0 20px 0">
-            </div>
-            <!-- Header discussion end -->
-
-            <!-- A comment -->
-            {{#thread.Comments}}
-            <div class="row-fluid">
+  
+              <!-- Header discussion -->
               <div class="row-fluid">
-                <div class="span8 pull-left">
-                  <i class="icon-eye-close"></i><strong><span> @{{AuthorNickname}}</span></strong>
-                </div>
-                <a class="span3 star{{#isStared}} stared{{/isStared}}" data-comment-id="{{Id}}" data-subject-id="{{thread.Subject.SubjectId}}" style="text-align: right">
-                  <span>{{Stars.length}}</span>
-                  <i class="icon-star{{^isStared}}-empty{{/isStared}}"></i>
-                </a>
-                <div class="span1">
-                  <span>{{CreatedSince}}</span>
+                <div class="span6">
+                  <h4>Commentaires: {{thread.Comments.length}} </h4>
                 </div>
               </div>
-
               <div class="row-fluid">
-                <p><span>{{Body}}</span></p>
+                <hr style="margin: 5px 0 20px 0">
               </div>
+              <!-- Header discussion end -->
+  
+              <!-- A comment -->
+              {{#thread.Comments}}
+              <div class="row-fluid">
+                <div class="row-fluid">
+                  <div class="span8 pull-left">
+                    <i class="icon-eye-close"></i><strong><span> @{{AuthorNickname}}</span></strong>
+                  </div>
+                  <a class="span3 star{{#isStared}} stared{{/isStared}}" data-comment-id="{{Id}}" data-subject-id="{{thread.Subject.SubjectId}}" style="text-align: right">
+                    <span>{{Stars.length}}</span>
+                    <i class="icon-star{{^isStared}}-empty{{/isStared}}"></i>
+                  </a>
+                  <div class="span1">
+                    <span>{{CreatedSince}}</span>
+                  </div>
+                </div>
+  
+                <div class="row-fluid">
+                  <p><span>{{Body}}</span></p>
+                </div>
+              </div>
+              <hr style="margin: 5px 0px 5px 0px">
+              {{/thread.Comments}}
+              <!-- A comment end -->
+  
             </div>
-            <hr style="margin: 5px 0px 5px 0px">
-            {{/thread.Comments}}
-            <!-- A comment end -->
-
-          </div>
-      
-          <div id="comment" class="row-fluid">
-            <form class="row-fluid form-comment">
-              <input id="add-comment" type="text" class="input-xlarge span12" placeholder="Participer !">
-              <input type="submit" value="envoyer" />
-            </form>
-          </div>
-
-        </div><!-- #thread -->
+        
+            <div id="comment" class="row-fluid">
+              <form class="row-fluid form-comment">
+                <input id="add-comment" type="text" class="input-xlarge span10" placeholder="Participer !">
+                <input type="submit" value="Envoyer" class="btn btn-primary span2 pull-right" />
+              </form>
+            </div>
+  
+          </div><!-- #thread -->
+        </div><!-- .hero-unit -->
       </div><!-- .row -->
     </script><!-- #thread-detail -->
 
