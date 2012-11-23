@@ -8,6 +8,12 @@ body {
 /*
  List of threads
  */
+#header {border-bottom:3px solid #f29033}
+  #header .brand {display:block;width:127px;height:40px;background:url(../img/logo.png) no-repeat 0 0;line-height:3000em; padding:0; margin:0 10px 0 -5px;}
+
+/*
+ List of threads
+ */
 .threads-list{}
   .threads-list .thread{height:450px;margin-bottom:25px;}
     .threads-list .thread .img{}

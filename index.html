@@ -7,7 +7,6 @@
 
     <!-- STYLESHEETS -->
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css?##VERSION##" />
-    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap-responsive.min.css?##VERSION##" />
     <link rel="stylesheet" href="css/application.css?##VERSION##" />
     <link rel="stylesheet" href="css/application-responsive.css?##VERSION##" />
 
@@ -146,7 +145,8 @@
     <script type="text/x-handlebars-template" id="header-tmpl">
       <div class="navbar-inner">
         <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="#"><b>C</b>ommunity <b>Elect</b> the <b>O</b>ffer</a>
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a>
+          <a class="brand" href="#"><b>C</b>ommunity <b>Elect</b> the <b>O</b>ffer</a>
           <div class="btn-group pull-right">
           {{#isLogged}}
             <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-user"></i> {{member.Nickname}} <span class="caret"></span></a>
