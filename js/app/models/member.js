@@ -2,7 +2,7 @@ define(['app/models/member/signin', 'app/models/member/signout', 'app/models/mem
   'use strict';
 
   var Member = Backbone.Model.extend({
-    url:'api/membership/member',
+    url:'/api/membership/member',
 
     initialize: function(){
       var self = this

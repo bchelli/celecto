@@ -2,7 +2,7 @@
   'use strict';
 
   var ThreadsCollection = Backbone.Collection.extend({
-    url:'api/thread/Previous',
+    url:'/api/thread/Previous',
     model: Thread
   });
 

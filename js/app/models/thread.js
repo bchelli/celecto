@@ -4,7 +4,7 @@ define(['app/models/thread/track-visit', 'app/models/thread/star', 'app/models/t
   return Backbone.Model.extend({
     idAttribute:'Id',
 
-    urlRoot:'api/thread/Id/',
+    urlRoot:'/api/thread/Id/',
 
     addComment: function(comment){
       var self = this
