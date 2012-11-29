@@ -12,7 +12,10 @@ define(function(){
 
       _view=view;
       _page=page;
-      
+
+      // google analytics
+      window._gaq.push(['_trackPageview', location.hash.substr(1), ]);
+
       if(triggerChange) this.triggerChange();
     },
 
