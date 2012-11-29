@@ -20,12 +20,12 @@ define(['libs/template', 'app/models/member'], function(tmpl, member){
       member.on('login-success', function(){
         self.close();
       });
-      member.on('signup-error', function(){
+      member.on('signup-error', function(error){
         self.render({
           template: 'signup',
-          nickname: this.$signupNickname.val(),
-          email: this.$signupEmail.val(),
-          error:true
+          nickname: self.$signupNickname.val(),
+          email: self.$signupEmail.val(),
+          error:error
         });
       });
       member.on('signup-success', function(){
@@ -76,6 +76,8 @@ define(['libs/template', 'app/models/member'], function(tmpl, member){
         $el:this.$el,
         template:opt.template || 'login',
         data:{
+          nickname:opt.nickname || '',
+          email:opt.email || '',
           login:opt.login || '',
           error:opt.error || false
         }

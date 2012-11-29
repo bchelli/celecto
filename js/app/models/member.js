@@ -32,15 +32,29 @@ define(['app/models/member/signin', 'app/models/member/signout', 'app/models/mem
 
     signup: function(data){
       var self = this
-        , ms = new MemberSignup(data)
+        , ms = new MemberSignup()
         ;
-      ms.on('error', function(){
-        self.trigger('signup-error');
+      ms.on('error', function(model,error){
+        if(error.status){
+          var status = error.status;
+          error = {};
+          switch(status){
+            case 409:
+              error.duplicateNickName = true;
+              break;
+            case 417:
+              error.duplicateEmail = true;
+            default:
+              error.unknown = true;
+              break;
+          }        
+        }
+        self.trigger('signup-error', error);
       }).on('sync', function(){
         self.set(ms.toJSON());
         self.trigger('signup-success');
       });
-      ms.save();
+      ms.save(data);
     },
 
     signout: function(){

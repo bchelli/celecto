@@ -1,4 +1,4 @@
-define(['app/models/thread/star', 'app/models/thread/comment', 'app/models/member'], function(Star, Comment, member){
+define(['app/models/thread/track-visit', 'app/models/thread/star', 'app/models/thread/comment', 'app/models/member'], function(TrackVisit, Star, Comment, member){
   'use strict';
 
   return Backbone.Model.extend({
@@ -23,7 +23,14 @@ define(['app/models/thread/star', 'app/models/thread/comment', 'app/models/membe
       });
       com.save();
     },
-
+    trackVisit: function(){
+      var self = this
+        ;
+      var trackVisit = new TrackVisit({
+        SubjectId:self.get('Subject').SubjectId
+      });
+      trackVisit.save();
+    },
     setCommentStared: function(commentId, state){
       var self = this
         , comments = self.get('Comments')

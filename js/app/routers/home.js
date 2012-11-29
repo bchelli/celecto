@@ -1,10 +1,11 @@
-define(function(){
+﻿define(function(){
   'use strict';
 
   return Backbone.Router.extend({
 
     routes: {
-      "": "listSales"
+      "": "listSales",
+	  "offres-precedentes":"listPreviousSales"
     },
 
     listSales: function () {
@@ -12,6 +13,21 @@ define(function(){
         threadsCollection.fetch({
           success:function(){
             homeLayout.render({
+              page:'offres-du-jour',
+              model:threadsCollection
+            });
+          }
+        })
+      });
+    },
+    
+	
+	listPreviousSales: function()  {
+	  require(['app/layouts/home', 'app/collections/previous_threads'], function(homeLayout, threadsCollection) {
+        threadsCollection.fetch({
+          success:function(){
+            homeLayout.render({
+              page:'offres-precedentes',
               model:threadsCollection
             });
           }

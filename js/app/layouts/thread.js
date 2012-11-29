@@ -8,7 +8,8 @@ define(['libs/template', 'app/models/member', 'libs/page'], function(tmpl, membe
     events:{
       'submit .form-comment':'addComment',
       'keyup #add-comment':'updateCounter',
-      'click .star':'changeStarState'
+      'click .star':'changeStarState',
+      'click .btn-visit':'trackVisit'
     },
 
     initialize:function(){
@@ -85,6 +86,11 @@ define(['libs/template', 'app/models/member', 'libs/page'], function(tmpl, membe
         self.model.setCommentStared(commentId, !state);
         self.render();
       });
+    },
+    trackVisit: function(ev){
+      var self = this
+        ;
+      self.model.trackVisit();
     }
 
   });

@@ -12,13 +12,13 @@ define(['libs/template', 'libs/page'], function(tmpl, page){
 
       tmpl.render({
         $el:this.$el,
-        template:'threads-list',
+        template:opt.page,
         data:{
           threads:opt.model.toJSON()
         }
       });
       
-      page.setPage('offres-du-jour', this);
+      page.setPage(opt.page, this);
 
     }
 

@@ -1,4 +1,4 @@
-define(['libs/template', 'app/models/member', 'app/views/login', 'libs/page'], function(tmpl, member, loginView, page){
+﻿define(['libs/template', 'app/models/member', 'app/views/login', 'libs/page'], function(tmpl, member, loginView, page){
   'use strict';
 
   var HeaderView = Backbone.View.extend({
@@ -20,7 +20,7 @@ define(['libs/template', 'app/models/member', 'app/views/login', 'libs/page'], f
 
     signout:function(ev){
       ev.preventDefault();
-      member.signout();
+      member.signout();é
     },
 
     signin:function(ev){
@@ -41,6 +41,11 @@ define(['libs/template', 'app/models/member', 'app/views/login', 'libs/page'], f
               label:'Offres du jour',
               id:'offres-du-jour',
               url:'#'
+            },
+		    {
+              label:'Offres précedentes',
+              id:'offres-precedentes',
+              url:'#/offres-precedentes'
             },
             {
               label:'A propos',

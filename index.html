@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <title>Celecto.com</title>
-    <meta name="description" content="Chackrounite aigu.com" />
+    <meta name="description" content="Community ELECT the Offer" />
     <link rel="icon" type="image/png" href="img/favicon.png">
 
     <!-- STYLESHEETS -->
@@ -44,8 +44,30 @@
     <!--
       TEMPLATES
     -->
-    <script type="text/x-handlebars-template" id="threads-list">
+    <script type="text/x-handlebars-template" id="offres-du-jour">
       <h2>Les offres du jour</h2>
+      <p>Ci-dessous la liste des offres qui viennent d’apparaitre sur net.Prenons la bonne décision: Discutons ces offres.</p>
+      
+      <div class="row thumbnails threads-list">
+        {{#threads}}
+        <div class="span4">
+          <div class="thumbnail thread">
+            <div class="caption">
+              <p><span>{{NumberOfComments}}</span> commentraires, <a href="#/thread/{{Id}}">participer à la discussion</a> </p>
+            </div>
+            <a href="#/thread/{{Id}}"><img style="img" alt="" src="{{Subject.Media}}" /></a>
+            <div class="caption">
+              <h5><img src="{{Subject.Origin.Logo}}" class="logo" /><span>{{Subject.Title}}</span></h5>
+              <h5><small>by <span>{{Subject.Origin.Name}}</span></small></h5>
+            </div> 
+          </div>
+        </div>
+        {{/threads}}
+      </div>
+    </script><!-- #sales-list -->
+
+    <script type="text/x-handlebars-template" id="offres-precedentes">
+      <h2>Les offres du Zboub</h2>
       <p>Ci-dessous la liste des offres qui viennent d’apparaitre sur net.Prenons la bonne décision: Discutons ces offres.</p>
       
       <div class="row thumbnails threads-list">
@@ -72,7 +94,7 @@
         <!-- Thread detail -->
         <div class="thread-detail span6">
           <div class="page-header">
-            <h1><img src="{{thread.Subject.Origin.Logo}}" style="width: 40px; height: 40px"> {{thread.Subject.Title}}</h1>
+            <h3><img src="{{thread.Subject.Origin.Logo}}" style="width: 40px; height: 40px"> {{thread.Subject.Title}}</h3>
           </div>
           <ul class="thumbnails">            
             <li class="span6">
@@ -82,9 +104,9 @@
                 </a>
                 <br>
                 <div class="caption">
-                  <h3>Description:<small> plus d'information disponibles sur vente-privee.com</small></h3>
+                  <h3>Description:<small> Plus d'information disponibles sur {{thread.Subject.Origin.Name}}</small></h3>
                   <p style="font-size:medium;text-align:justify; line-height:20px">{{{thread.Subject.Description}}}</p>
-                  <h4>{{thread.Subject.NumberOfExternalVisit}} membres ont visité l'offre sur {{thread.Subject.Origin.Name}} <a href="{{thread.Subject.Url}}" class="btn btn-primary">j'y vais</a> </h4>
+                  <h4>{{thread.Subject.NumberOfExternalVisit}} membres ont visité l'offre sur {{thread.Subject.Origin.Name}} <a href="{{thread.Subject.Url}}" target="_blank" class="btn btn-primary btn-visit">j'y vais</a> </h4>
                 </div>
               </div>
             </li>
@@ -112,15 +134,14 @@
               <div class="row-fluid">
                 <div class="row-fluid">
                   <div class="span8 pull-left">
-                    <i class="icon-eye-close"></i><strong><span> @{{AuthorNickname}}</span></strong>
+                   <strong><span> @{{AuthorNickname}}</span></strong>
                   </div>
                   <div class="span4 comment-infos">
+                    <span >{{Stars.length}}</span>
                     <a class="star{{#isStared}} stared{{/isStared}}" data-comment-id="{{Id}}" data-subject-id="{{thread.Subject.SubjectId}}" style="text-align: right">
-                      <span>{{Stars.length}}</span>
                       <i class="icon-star{{^isStared}}-empty{{/isStared}}"></i>
                     </a>
-                    -
-                    <span>{{CreatedSince}}</span>
+                    <span> {{CreatedSince}}</span>
                   </div>
                 </div>
   
@@ -240,25 +261,32 @@
             <label class="control-label" for="signupNickname">Nickname</label>
             <div class="controls">
               <input type="text" id="signupNickname" placeholder="Nickname" value="{{nickname}}">
+              {{#error.nickNameMandatory}}<p class="text-error">Veuillez renseigner un nickName.</p>{{/error.nickNameMandatory}}
+              {{#error.duplicateNickName}}<p class="text-error">Nickname déjà utilisé.</p>{{/error.duplicateNickName}}
             </div>
           </div>
           <div class="control-group">
             <label class="control-label" for="signupEmail">Email</label>
             <div class="controls">
               <input type="email" id="signupEmail" placeholder="Email" value="{{email}}">
+              {{#error.emailMandatory}}<p class="text-error">Veuillez renseigner une adresse email.</p>{{/error.emailMandatory}}
+              {{#error.duplicateEmail}}<p class="text-error">Adresse email déjà utilisée.</p>{{/error.duplicateEmail}}
+              {{#error.emailInvalid}}<p class="text-error">Adresse email invalide.</p>{{/error.emailInvalid}}
             </div>
           </div>
           <div class="control-group">
             <label class="control-label" for="signupPassword">Password</label>
             <div class="controls">
               <input type="password" id="signupPassword" placeholder="Password">
+              {{#error.passwordsMandatory}}<p class="text-error">Veuillez renseigner un mot de passe.</p>{{/error.passwordsMandatory}}
             </div>
           </div>
           <div class="control-group">
             <label class="control-label" for="signupRePassword">Re Password</label>
             <div class="controls">
               <input type="password" id="signupRePassword" placeholder="Password">
-              {{#error}}<p class="text-error">Mauvais email ou mot de passe.</p>{{/error}}
+              {{#error.passwordsMismatch}}<p class="text-error">Veuillez renseigner deux fois le même mot de passe.</p>{{/error.passwordsMismatch}}
+              {{#error.unknown}}<p class="text-error">oups! On rencontre des problèmes techniques, essayez plus tard.</p>{{/error.unknown}}
             </div>
           </div>
         </div>
