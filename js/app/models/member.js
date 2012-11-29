@@ -44,6 +44,7 @@ define(['app/models/member/signin', 'app/models/member/signout', 'app/models/mem
               break;
             case 417:
               error.duplicateEmail = true;
+              break;
             default:
               error.unknown = true;
               break;
