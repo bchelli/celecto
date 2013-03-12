@@ -1,5 +1,5 @@
 body {
-  padding-top: 60px;
+  padding-top: 44px;
   padding-bottom: 40px;
 }
 
@@ -50,8 +50,19 @@ body {
 }
 
 .jumbotron {
-    margin: 60px 0;
+    padding: 150px 0;
     text-align: center;
+    background: url(http://3.bp.blogspot.com/-FY30in9GLWQ/TqTujZkGy7I/AAAAAAAABZA/OMhf_9LCZnQ/s1600/IMG_9324.JPG) no-repeat center center;
+    -webkit-background-size: cover;
+       -moz-background-size: cover;
+         -o-background-size: cover;
+            background-size: cover;
+    -webkit-text-shadow: 1px 1px 10px #fff;
+       -moz-text-shadow: 1px 1px 10px #fff;
+         -o-text-shadow: 1px 1px 10px #fff;
+            text-shadow: 1px 1px 10px #fff;
+    color:#000;
+    border-bottom:1px solid #333;
 }
 
 

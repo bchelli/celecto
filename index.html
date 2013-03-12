@@ -38,13 +38,13 @@
 
     <div id="header" class="navbar navbar-fixed-top"></div>
       
+    <!-- Page Container -->
+    <div id="page"></div>
+
     <div class="container">
         
     <!-- AddThis Button END -->
           
-      <!-- Page Container -->
-      <div id="page"></div>
-
       <!-- Login Popup Container -->
       <div id="loginPopup" class="modal hide fade login" tabindex="-1" role="dialog" aria-labelledby="loginPopupLabel" aria-hidden="true"></div>
 
@@ -65,6 +65,7 @@
       TEMPLATES
     -->
     <script type="text/x-handlebars-template" id="offres-du-jour">
+    <div class="container">
         
     <h5>Ci-dessous la liste des offres qui viennent d’apparaitre aujourd'hui sur le net, identifiées et partagées par la communauté CElectO.</h5>
     <h5>Prenons la bonne décision: Discutons ces offres!</h5>
@@ -86,10 +87,12 @@
         </div>
         {{/threads}}
     </div>
+    </div>
     </script><!-- #sales-list -->
 
     <!--share an offer-->
     <script type="text/x-handlebars-template" id="partager-une-offre">
+    <div class="container">
     <h5>Pour partager une offre avec la communauté, renseigner le titre, le lien de et une description.</h5>
     <br />
     <div class="row-fluid">
@@ -132,10 +135,11 @@
             <h7><span id="provider_name">{{providerName}}</span></h7>
         </div>
     </div>
-            
+    </div>
     </script> <!--#share an offer -->
 
     <script type="text/x-handlebars-template" id="offres-precedentes">
+    <div class="container">
     <h5>Ci-dessous la liste des offres de la semaine passée.</h5>
     <div class="row thumbnails threads-list">
         {{#threads}}
@@ -155,9 +159,11 @@
         </div>
         {{/threads}}
     </div>
+    </div>
     </script><!-- #sales-list -->
 
     <script type="text/x-handlebars-template" id="thread-detail"> <!-- thread details -->
+    <div class="container">
       <div class="row">
         <!-- Thread detail -->
         <div class="thread-detail span6">
@@ -231,6 +237,7 @@
         </div><!-- #thread -->
     </div><!-- .hero-unit -->
     </div><!-- .row -->
+    </div>
     </script><!-- #thread-detail -->
 
     <script type="text/x-handlebars-template" id="header-tmpl">
@@ -269,6 +276,7 @@
         <h1>Community Elect the Offer</h1>
         <p class="lead">CElectO est une communauté qui se conseille, s’organise et s’entraide dans le chaos des offres quotidiennes.</p>
     </div>
+    <div class="container">
         <div class="row-fluid">
         <div class="span4">
           <h2 class="centerTitle"><a href="/#offres-du-jour">Consulter</a></h2>
@@ -302,10 +310,12 @@
           </p>
         </div>
       </div>
+    </div>
     </script>
     <!--#intro-->
 
     <script type="text/x-handlebars-template" id="about">
+    <div class="container">
 
     <div class="row">
         <!-- Thread detail -->
@@ -361,7 +371,7 @@
         </div><!-- #thread -->
     </div><!-- .hero-unit -->
     </div><!-- .row -->
-
+    </div>
     </script><!-- #about -->
 
     <script type="text/x-handlebars-template" id="login">
