@@ -3,182 +3,248 @@
   <head>
     <meta charset="utf-8" />
     <title>Celecto.com</title>
-    <meta name="description" content="Community ELECT the Offer" />
-    <link rel="icon" type="image/png" href="img/favicon.png">
+    <meta name="description" content="CElectO est une communauté qui se conseille, s’organise et s’entraide dans le chaos des offres quotidiennes." />
+
+    <link rel="icon" type="image/png" href="static/img/favicon.png">
+    <link rel="image_src" href="http://www.celecto.com/static/img/logo.png" />
+
+    <meta property="og:title" content="Community ELECT the Offer"/>
+    <meta property="og:url" content="http://www.celecto.com"/>
+    <meta property="og:image" content="http://www.celecto.com/static/img/fb_logo.jpg" />
+    <meta property="og:site_name" content="CElecto"/>
+    <meta property="og:description"
+      content="CElectO: Consulter - Discuter - Partager. CElecto est une communauté qui se conseille, s’organise et s’entraide dans le chaos des offres quotidiennes."/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- STYLESHEETS -->
-    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css?##VERSION##" />
-    <link rel="stylesheet" href="css/application.css?##VERSION##" />
-    <link rel="stylesheet" href="css/application-responsive.css?##VERSION##" />
+    <link rel="stylesheet" href="/static/vendor/bootstrap/css/bootstrap.min.css?1.2" />
+    <link rel="stylesheet" href="/static/css/application.css?1.3" />
+    <link rel="stylesheet" href="/static/css/application-responsive.css?1.2" />
 
     <!-- JAVASCRIPTS -->
-    <script src="vendor/mustache/mustache.0.7.0.js?##VERSION##"></script>
-    <script src="vendor/require/require.2.1.1.min.js?##VERSION##"></script>
-    <script src="vendor/underscore/underscore.1.4.2.min.js?##VERSION##"></script>
-    <script src="vendor/jquery/jquery.1.8.3.min.js?##VERSION##"></script>
-    <script src="vendor/backbone/backbone.0.9.2.min.js?##VERSION##"></script>
-    <script src="vendor/bootstrap/js/bootstrap.min.js?##VERSION##"></script>
-    <script src="js/main.js?##VERSION##"></script>
+    <script src="/static/vendor/mustache/mustache.0.7.0.js?1.2"></script>
+    <script src="/static/vendor/require/require.2.1.1.min.js?1.2"></script>
+    <script src="/static/vendor/underscore/underscore.1.4.2.min.js?1.2"></script>
+    <script src="/static/vendor/jquery/jquery.1.8.3.min.js?1.2"></script>
+    <script src="/static/vendor/backbone/backbone.0.9.2.min.js?1.2"></script>
+    <script src="/static/vendor/bootstrap/js/bootstrap.min.js?1.2"></script>
+    <script src="/static/js/main.js?1"></script>
+    <script type="text/javascript">
+        var oneall_js_protocol = (("https:" == document.location.protocol) ? "https" : "http");
+        document.write(unescape("%3Cscript src='" + oneall_js_protocol + "://celecto.api.oneall.com/socialize/library.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
   </head>
   <body>
 
     <div id="header" class="navbar navbar-fixed-top"></div>
-
+      
     <div class="container">
-
+        
+    <!-- AddThis Button END -->
+          
       <!-- Page Container -->
       <div id="page"></div>
 
       <!-- Login Popup Container -->
-      <div id="loginPopup" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="loginPopupLabel" aria-hidden="true"></div>
+      <div id="loginPopup" class="modal hide fade login" tabindex="-1" role="dialog" aria-labelledby="loginPopupLabel" aria-hidden="true"></div>
 
       <hr>
 
       <footer>
-        <p>&copy; Company 2012</p>
+    <div class="oas_box oas_box_btns_m" >
+     <span class="oas_btn oas_btn_facebook" title="Send to Facebook"></span>
+     <span class="oas_btn oas_btn_twitter" title="Send to Twitter"></span>
+     <span class="oas_btn oas_btn_linkedin" title="Send to LinkedIn"></span>
+    <p class="pull-right">&copy; CElectO 2013</p>
+    </div>          
       </footer>
 
     </div> <!-- /container -->
-
 
     <!--
       TEMPLATES
     -->
     <script type="text/x-handlebars-template" id="offres-du-jour">
-      <h2>Les offres du jour</h2>
-      <p>Ci-dessous la liste des offres qui viennent d’apparaitre sur net.Prenons la bonne décision: Discutons ces offres.</p>
-      
-      <div class="row thumbnails threads-list">
+        
+    <h5>Ci-dessous la liste des offres qui viennent d’apparaitre aujourd'hui sur le net, identifiées et partagées par la communauté CElectO.</h5>
+    <h5>Prenons la bonne décision: Discutons ces offres!</h5>
+    <div class="row thumbnails threads-list">
         {{#threads}}
-        <div class="span4">
-          <div class="thumbnail thread">
-            <div class="caption">
-              <p><span>{{NumberOfComments}}</span> commentraires, <a href="#/thread/{{Id}}">participer à la discussion</a> </p>
+        <div class="span3">
+            <div class="thumbnail thread">
+                <div class="caption">
+                    <h7>Partagée par <strong>{{{Subject.AuthorId}}}</strong></h7></br>
+                    <h7>Parue il y a <strong>{{Subject.Since}}</strong></h7></br>
+                    <h7>{{NumberOfComments}} commentaires, <a href="#/thread/{{Id}}">je participe</a> </h7>
+                </div>
+                <a class="img" href="#/thread/{{Id}}"><img alt="" src="{{Subject.Media}}" /></a>
+                <div class="caption">
+                    <h7><span> {{{Subject.Title}}}</span></h7><br />
+                    <small><i><strong>by <span>{{Subject.Origin.Name}}</span> ( {{Subject.NumberOfExternalVisit}} visites )</strong></i></small>
+                </div> 
             </div>
-            <a href="#/thread/{{Id}}"><img style="img" alt="" src="{{Subject.Media}}" /></a>
-            <div class="caption">
-              <h5><img src="{{Subject.Origin.Logo}}" class="logo" /><span>{{Subject.Title}}</span></h5>
-              <h5><small>by <span>{{Subject.Origin.Name}}</span></small></h5>
-            </div> 
-          </div>
         </div>
         {{/threads}}
-      </div>
+    </div>
     </script><!-- #sales-list -->
+
+    <!--share an offer-->
+    <script type="text/x-handlebars-template" id="partager-une-offre">
+    <h5>Pour partager une offre avec la communauté, renseigner le titre, le lien de et une description.</h5>
+    <br />
+    <div class="row-fluid">
+        <div class="span6">
+            <form class="form-horizontal share-offer-comment span12">
+                <div class="control-group">
+                    <label class="control-label" for="title">Titre de l'offre</label>
+                    <div class="controls">
+                        <input type="text" id="title" class="span11" placeholder="Titre de l'offre:" value="{{title}}" />
+                        {{#error.titleMandatory}}<p class="text-error">Veuillez renseigner un titre.</p>{{/error.titleMandatory}}
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="link">Lien de l'offre</label>
+                    <div class="controls">
+                        <input type="text" id="link" placeholder="Lien de l'offre:" class="span11" value="{{url}}"/>
+                        <img id="loader" src="/static/img/ajax-loader.gif" style="visibility:hidden" />
+                        {{#error.linkMandatory}}<p class="text-error">Veuillez renseigner le lien de l'offre.</p>{{/error.linkMandatory}}
+                        {{#error.invalidLink}}<p class="text-error">Le lien n'est pas valide.</p>{{/error.invalidLink}}
+        
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="description">Description de l'offre:</label>
+                    <div class="controls">
+                        <textarea type="text" id="description" rows="3"  class="span11">{{description}}</textarea>
+                        {{#error.descriptionMandatory}}<p class="text-error">Veuillez renseigner une description de l'offre.</p>{{/error.descriptionMandatory}}
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <input type="submit" value="Partager" id="share" class="btn btn-primary span4"  />
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="span6">
+            <img id="thumbnail_url" class="img-rounded" src="{{img}}"/>
+            <br />
+            <h7><span id="provider_name">{{providerName}}</span></h7>
+        </div>
+    </div>
+            
+    </script> <!--#share an offer -->
 
     <script type="text/x-handlebars-template" id="offres-precedentes">
-      <h2>Les offres du Zboub</h2>
-      <p>Ci-dessous la liste des offres qui viennent d’apparaitre sur net.Prenons la bonne décision: Discutons ces offres.</p>
-      
-      <div class="row thumbnails threads-list">
+    <h5>Ci-dessous la liste des offres de la semaine passée.</h5>
+    <div class="row thumbnails threads-list">
         {{#threads}}
-        <div class="span4">
-          <div class="thumbnail thread">
-            <div class="caption">
-              <p><span>{{NumberOfComments}}</span> commentraires, <a href="#/thread/{{Id}}">participer à la discussion</a> </p>
+        <div class="span3">
+            <div class="thumbnail thread">
+                <div class="caption">
+                    <h7>Partagée par <strong>{{{Subject.AuthorId}}}</strong></h7></br>
+                    <h7>Parue il y a <strong>{{Subject.Since}}</strong></h7></br>
+                    <h7>{{NumberOfComments}} commentaires, <a href="#/thread/{{Id}}">je participe</a> </h7>
+                </div>
+                <a class="img" href="#/thread/{{Id}}"><img alt="" src="{{Subject.Media}}" /></a>
+                <div class="caption">
+                    <h7><span> {{{Subject.Title}}}</span></h7><br />
+                    <small><i><strong>by <span>{{Subject.Origin.Name}}</span> ( {{Subject.NumberOfExternalVisit}} visites )</strong></i></small>
+                </div> 
             </div>
-            <a href="#/thread/{{Id}}"><img style="img" alt="" src="{{Subject.Media}}" /></a>
-            <div class="caption">
-              <h5><img src="{{Subject.Origin.Logo}}" class="logo" /><span>{{Subject.Title}}</span></h5>
-              <h5><small>by <span>{{Subject.Origin.Name}}</span></small></h5>
-            </div> 
-          </div>
         </div>
         {{/threads}}
-      </div>
+    </div>
     </script><!-- #sales-list -->
 
-    <script type="text/x-handlebars-template" id="thread-detail">
+    <script type="text/x-handlebars-template" id="thread-detail"> <!-- thread details -->
       <div class="row">
-
         <!-- Thread detail -->
         <div class="thread-detail span6">
-          <div class="page-header">
-            <h3><img src="{{thread.Subject.Origin.Logo}}" style="width: 40px; height: 40px"> {{thread.Subject.Title}}</h3>
-          </div>
-          <ul class="thumbnails">            
-            <li class="span6">
-              <div>
-                <a class="thumbnail">
-                  <img src="{{thread.Subject.Media}}" alt="" class="img" />
+            <div class="thumbnails">            
+              <div class="span3">
+                <a class="pull-right thumbnail">
+                  <img src="{{thread.Subject.Media}}" alt="{{thread.Subject.Title}}"  class="img" />
                 </a>
-                <br>
-                <div class="caption">
-                  <h3>Description:<small> Plus d'information disponibles sur {{thread.Subject.Origin.Name}}</small></h3>
-                  <p style="font-size:medium;text-align:justify; line-height:20px">{{{thread.Subject.Description}}}</p>
-                  <h4>{{thread.Subject.NumberOfExternalVisit}} membres ont visité l'offre sur {{thread.Subject.Origin.Name}} <a href="{{thread.Subject.Url}}" target="_blank" class="btn btn-primary btn-visit">j'y vais</a> </h4>
-                </div>
+              </div>  
+              <div class="span3 caption">
+                <h5>{{{thread.Subject.Title}}} <span class="pull-right">{{Subject.Since}}</span></h5>
               </div>
-            </li>
-          </ul>
-        </div><!-- .span6 -->
-      
-        <!-- Discussion  & previous -->
-        <div class="hero-unit span6">
-          <div id="thread">
+            </div>
+            <hr>
+            <div>
+                <h5>Description:<small> Plus d'information disponibles sur {{thread.Subject.Origin.Name}}</small></h5>
+                <p style="font-size:medium;text-align:justify; line-height:20px">{{{thread.Subject.Description}}}</p>
+                <h5>{{thread.Subject.NumberOfExternalVisit}} membres ont visité l'offre sur {{thread.Subject.Origin.Name}} <a href="{{thread.Subject.Url}}" target="_blank" class="btn btn-primary btn-visit">j'y vais</a> </h5>
+            </div>
+        </div>
+    <!-- Discussion  & previous -->
+    <div class="hero-unit span6">
+        <div id="thread">
+        <div class="row-fluid">
+  
+            <!-- Header discussion -->
             <div class="row-fluid">
+            <div class="span6">
+                <h5>Commentaires: {{thread.Comments.length}} </h5>
+            </div>
+            </div>
+            <div class="row-fluid">
+            <hr style="margin: 5px 0 20px 0">
+            </div>
+            <!-- Header discussion end -->
   
-              <!-- Header discussion -->
-              <div class="row-fluid">
-                <div class="span6">
-                  <h4>Commentaires: {{thread.Comments.length}} </h4>
+            <!-- A comment -->
+            {{#thread.Comments}}
+            <div class="row-fluid">
+            <div class="row-fluid" >
+                <div class="span8 pull-left">
+                    <strong><span> @{{AuthorNickname}}</span></strong>
                 </div>
-              </div>
-              <div class="row-fluid">
-                <hr style="margin: 5px 0 20px 0">
-              </div>
-              <!-- Header discussion end -->
-  
-              <!-- A comment -->
-              {{#thread.Comments}}
-              <div class="row-fluid">
-                <div class="row-fluid">
-                  <div class="span8 pull-left">
-                   <strong><span> @{{AuthorNickname}}</span></strong>
-                  </div>
-                  <div class="span4 comment-infos">
+                <div class="span4 comment-infos">
                     <span >{{Stars.length}}</span>
                     <a class="star{{#isStared}} stared{{/isStared}}" data-comment-id="{{Id}}" data-subject-id="{{thread.Subject.SubjectId}}" style="text-align: right">
-                      <i class="icon-star{{^isStared}}-empty{{/isStared}}"></i>
+                        <i class="icon-star{{^isStared}}-empty{{/isStared}}"></i>
                     </a>
                     <span> {{CreatedSince}}</span>
-                  </div>
                 </div>
-  
-                <div class="row-fluid">
-                  <p><span>{{Body}}</span></p>
-                </div>
-              </div>
-              <hr style="margin: 5px 0px 5px 0px">
-              {{/thread.Comments}}
-              <!-- A comment end -->
-  
             </div>
+  
+            <div class="row-fluid">
+                <p><span class="break">{{{Body}}}</span></p>
+            </div>
+            </div>
+            <hr style="margin: 5px 0px 5px 0px">
+            {{/thread.Comments}}
+            <!-- A comment end -->
+  
+        </div>
         
-            <div id="comment" class="row-fluid">
-              <form class="row-fluid form-comment">
-                <input id="add-comment" type="text" class="input-xlarge span10" placeholder="Participer !">
+        <div id="comment" class="row-fluid">
+            <form class="row-fluid form-comment">
+                <textarea id="add-comment" rows="3" class="span10" placeholder="Participer !" />
                 <input type="submit" value="Envoyer" class="btn btn-primary span2 pull-right add-comment-btn" />
                 <span class="comment-limit"></span>
-              </form>
-            </div>
+            </form>
+        </div>
   
-          </div><!-- #thread -->
-        </div><!-- .hero-unit -->
-      </div><!-- .row -->
+        </div><!-- #thread -->
+    </div><!-- .hero-unit -->
+    </div><!-- .row -->
     </script><!-- #thread-detail -->
 
     <script type="text/x-handlebars-template" id="header-tmpl">
       <div class="navbar-inner">
         <div class="container">
           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a>
-          <a class="brand" href="#"><b>C</b>ommunity <b>Elect</b> the <b>O</b>ffer</a>
+          <a class="brand" href="#"></a>
           <div class="btn-group pull-right">
           {{#isLogged}}
-            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-user"></i> {{member.Nickname}} <span class="caret"></span></a>
+            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="icon-user"></i> {{member.Nickname}} <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Profile</a></li>
-              <li class="divider"></li>
+          <!--    <li><a href="#">Profile</a></li>
+              <li class="divider"></li>-->
               <li><a href="#" class="signout">Se déconnecter</a></li>
             </ul>
           {{/isLogged}}
@@ -197,117 +263,122 @@
       </div>
     </script><!-- #header-tmpl -->
 
+    <!--intro-->
+    <script type="text/x-handlebars-template" id="intro">
+    <div class="jumbotron">
+        <h1>Community Elect the Offer</h1>
+        <p class="lead">CElectO est une communauté qui se conseille, s’organise et s’entraide dans le chaos des offres quotidiennes.</p>
+    </div>
+        <div class="row-fluid">
+        <div class="span4">
+          <h2 class="centerTitle"><a href="/#offres-du-jour">Consulter</a></h2>
+          <p>Retourver chaque jour les offres qui viennent de paraitre sur le web.<br/><br /></p>
+          <p>
+            <a href="#detailsoj" role="button"  data-toggle="modal"><img src="/static/img/offresdujour.png" /></a>
+            <div id="detailsoj" class="modal hide fade large" tabindex="-1" role="dialog"  aria-hidden="true">    
+                <img src="/static/img/offresdujour.png" />
+            </div>
+         </p>
+        </div>
+
+        <div class="span4">
+          <h2 class="centerTitle"><a href="/#offres-du-jour">Discuter</a></h2>
+          <p>Vous avez un doute sur le prix, la qualité ou le sérieux de l'offre? Une information à partager? Discutez s'en avec la communauté.</p>
+          <p>
+            <a href="#detailsd" role="button"  data-toggle="modal"><img src="/static/img/discuter.png" /></a>
+            <div id="detailsd" class="modal hide fade large" tabindex="-1" role="dialog"  aria-hidden="true">    
+                <img src="/static/img/discuter.png" />
+            </div>
+          </p>
+       </div>
+        <div class="span4">
+          <h2 class="centerTitle"><a href="/#partager-une-offre">Partager</a></h2>
+          <p>Une offre vous parait intéressante et la communauté vous donne raison ? Partager là et faisant profiter vos amis ! <br /><br /></p>
+          <p>
+            <a href="#detailsshare" role="button"  data-toggle="modal"><img src="/static/img/share.png" /></a>
+            <div id="detailsshare" class="modal hide fade large" tabindex="-1" role="dialog"  aria-hidden="true">    
+                <img src="/static/img/share.png" />
+            </div>
+          </p>
+        </div>
+      </div>
+    </script>
+    <!--#intro-->
+
     <script type="text/x-handlebars-template" id="about">
-      <h3>CElectO <small>c'est quoi ?</small></h3><br />
-      <p style="text-align:justify">
-        CElectO est une communauté qui se conseille, s’organise et s’entraide dans le chaos des offres quotidiennes.<br />
-        Chaque jour, plusieurs offres apparaissent sur internet. CElecto propose à sa communauté un sommaire quotidien (daily digest ) des offres les plus intéressantes qui viennent d’apparaitre sur le net. Les offres qui cachent des vices, des fausses promotions, des pratiques non-éthiques seront démasquées par la communauté. D’autre part, les offres de valeur seront reconnues et recommandées.C’est la communauté qui décide ! <br />
-        Sur CElectO, chaque offre aura son espace de discussion dédiée. Celecto intégre un système de micro-message simple d’utilisation. Chacun peut donner son avis, poser des questions, partager une information, alerter les autres membres…
-      </p>
-      <br />
-      <h3>CElectO <small>Pourquoi ?</small></h3><br />
-      <p style="text-align:justify">
-        Un des fondements d’internet, c’est le partage : partage de connaissances, de documents, de photos, de vidéos, de nouvelles, d’informations personnelles et coopératives…<br />
-        Mais la partie d’internet dédiée à l’e-commerce est passée à côté de cette valeur: L’internaute est seul face à l’offre, il est submergé de questions: Le sérieux de la marque, la qualité du produit, le prix le plus bas sur internet, l’utilité, la garantie… Cette  ambigüité n’est pas bénéfique pour l’internaute,  car elle altère sa prise de décision.  Mais pourquoi les sites marchands veulent isoler l’internaute ? Est-ce un privilège ? Est-ce une stratégie : Diviser pour régner ?  La réponse se trouve dans la nature de leur activité : le commerce, ils sont plutôt occupés à négocier, à déployer leurs plans marketing et à réduire leurs coûts …<br />
-        Pour les sites d’e-commerce classiques, les internautes ont un gros avantage, les offres sont quasi-illimitées dans le temps.  Assez pour que l’internaute demande  l’avis d’amis, famille et collègue. Il bénéficie aussi d’un autre atout, les comparateurs de prix ont eu le temps de capturer l’offre, et les sites spécialisés à évaluer le produit.de chercher sur les sites spécialisés et les comparateurs prix qui  En plus on est dans un achat planifié<br />
-        Mais aujourd’hui on a de plus en plus d’offres volatiles, à durée. Dans ce cas, l’internaute perd ses atouts : le temps est comptés, le stock est limité, les comparateur de prix n’ont pas eu le temps de capturer le prix de cette offre vue sa nature éphémère.  En plus l’internaute est dans une approche opportuniste qui va altérer encore sa prise de décision.  Les  internautes face ce genre d’offre vont prendre l’initiative d’évaluer l’offre : Le prix,  La qualité du produit … C’est de ce constat qu’est née le concept de CElectO : Offrir au internaute dans le cadre d’une communauté un espace pour partager autour des offres volatiles.
-      </p>
+
+    <div class="row">
+        <!-- Thread detail -->
+        <div class="thread-detail span6">
+                {{{thread.Subject.Title}}}
+           <hr>
+              {{{thread.Subject.Description}}}
+        </div>
+    <!-- Discussion  & previous -->
+    <div class="hero-unit span6">
+        <div id="thread">
+        <div class="row-fluid">
+            <!-- Header discussion -->
+            <div class="row-fluid">
+            <div class="span6">
+                <h5>Commentaires: {{thread.Comments.length}} </h5>
+            </div>
+            </div>
+            <div class="row-fluid">
+            <hr style="margin: 5px 0 20px 0">
+            </div>
+            <!-- Header discussion end -->
+            <!-- A comment -->
+            {{#thread.Comments}}
+            <div class="row-fluid">
+            <div class="row-fluid" >
+                <div class="span8 pull-left">
+                    <strong><span> @{{AuthorNickname}}</span></strong>
+                </div>
+                <div class="span4 comment-infos">
+                    <span >{{Stars.length}}</span>
+                    <a class="star{{#isStared}} stared{{/isStared}}" data-comment-id="{{Id}}" data-subject-id="{{thread.Subject.SubjectId}}" style="text-align: right">
+                        <i class="icon-star{{^isStared}}-empty{{/isStared}}"></i>
+                    </a>
+                    <span> {{CreatedSince}}</span>
+                </div>
+            </div>
+            <div class="row-fluid">
+                <p><span class="break">{{Body}}</span></p>
+            </div>
+            </div>
+            <hr style="margin: 5px 0px 5px 0px">
+            {{/thread.Comments}}
+            <!-- A comment end -->
+        </div>
+        <div id="comment" class="row-fluid">
+            <form class="row-fluid form-comment">
+                <textarea id="add-comment" rows="3" class="span10" placeholder="Participer !" />
+                <input type="submit" value="Envoyer" class="btn btn-primary span2 pull-right add-comment-btn" />
+                <span class="comment-limit"></span>
+            </form>
+        </div>
+        </div><!-- #thread -->
+    </div><!-- .hero-unit -->
+    </div><!-- .row -->
+
     </script><!-- #about -->
 
     <script type="text/x-handlebars-template" id="login">
-      <form class="form-horizontal form-login">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-          <h3 id="loginPopupLabel">Login</h3>
-        </div>
-        <div class="modal-body">
-          <div class="control-group">
-            <label class="control-label" for="loginEmail">Email</label>
-            <div class="controls">
-              <input type="email" id="loginEmail" placeholder="Email" value="{{login}}">
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" for="loginPassword">Password</label>
-            <div class="controls">
-              <input type="password" id="loginPassword" placeholder="Password">
-              {{#error}}<p class="text-error">Mauvais email ou mot de passe.</p>{{/error}}
-            </div>
-          </div>
-          <div class="control-group">
-            <div class="controls">
-              <label class="checkbox">
-                <input type="checkbox"> Remember me
-              </label>
-            </div>
-          </div>
-          <a class="open-signup">ou créer votre compte</a>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-          <button type="submit" class="btn btn-primary">Login</button>
-        </div>
-      </form>
+        <div class="center">
+            <div id="social_login_container" ></div>
+        </div>        
     </script><!-- #login -->
 
-    <script type="text/x-handlebars-template" id="signup">
-      <form class="form-horizontal form-signup">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-          <h3 id="loginPopupLabel">Créer mon compte</h3>
-        </div>
-        <div class="modal-body">
-          <div class="control-group">
-            <label class="control-label" for="signupNickname">Nickname</label>
-            <div class="controls">
-              <input type="text" id="signupNickname" placeholder="Nickname" value="{{nickname}}">
-              {{#error.nickNameMandatory}}<p class="text-error">Veuillez renseigner un nickName.</p>{{/error.nickNameMandatory}}
-              {{#error.duplicateNickName}}<p class="text-error">Nickname déjà utilisé.</p>{{/error.duplicateNickName}}
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" for="signupEmail">Email</label>
-            <div class="controls">
-              <input type="email" id="signupEmail" placeholder="Email" value="{{email}}">
-              {{#error.emailMandatory}}<p class="text-error">Veuillez renseigner une adresse email.</p>{{/error.emailMandatory}}
-              {{#error.duplicateEmail}}<p class="text-error">Adresse email déjà utilisée.</p>{{/error.duplicateEmail}}
-              {{#error.emailInvalid}}<p class="text-error">Adresse email invalide.</p>{{/error.emailInvalid}}
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" for="signupPassword">Password</label>
-            <div class="controls">
-              <input type="password" id="signupPassword" placeholder="Password">
-              {{#error.passwordsMandatory}}<p class="text-error">Veuillez renseigner un mot de passe.</p>{{/error.passwordsMandatory}}
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" for="signupRePassword">Re Password</label>
-            <div class="controls">
-              <input type="password" id="signupRePassword" placeholder="Password">
-              {{#error.passwordsMismatch}}<p class="text-error">Veuillez renseigner deux fois le même mot de passe.</p>{{/error.passwordsMismatch}}
-              {{#error.unknown}}<p class="text-error">oups! On rencontre des problèmes techniques, essayez plus tard.</p>{{/error.unknown}}
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-          <button type="submit" class="btn btn-primary">Créer mon compte</button>
-        </div>
-      </form>
-    </script><!-- #signup -->
-
     <script type="text/javascript">
-    
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-36685572-1']);
-    
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-    
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-36685572-1']);
+
+        (function () {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
     </script>
   </body>
 </html>
