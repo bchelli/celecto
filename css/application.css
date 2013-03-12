@@ -15,8 +15,9 @@ body {
  List of threads
  */
 .threads-list{}
-  .threads-list .thread{height:450px;margin-bottom:25px;}
-    .threads-list .thread .img{}
+  .threads-list .thread{height:370px;margin-bottom:20px;}
+    .threads-list .thread .img{display:block}
+      .threads-list .thread .img img{height:160px;margin:0 auto;display:block}
     .threads-list .thread .logo{width:30px;height:30px;}
 
 .hero-unit{padding:0;background:#F7F7F7;font-size:14px;}
@@ -25,3 +26,71 @@ body {
 #thread {margin: 10px 30px;}
   #thread form {margin: 10px 0 0;}
   .comment-infos {display:block;text-align:right;}
+
+ .break {
+        word-wrap: break-word;
+    }
+
+
+.centerTitle {
+    text-align:center;
+}
+
+.login {
+    padding:20px;
+    width: 206px;
+    height: 141px;
+    margin: -90px 0 0 -123px;
+}
+@media (max-width: 767px){
+    .modal.fade.in {
+        margin-top:0;
+        left:50%;
+    }
+}
+
+.jumbotron {
+    margin: 60px 0;
+    text-align: center;
+}
+
+
+.modal.large{
+    width: 780px;
+    margin-left: -390px; /* - width/2 */
+}
+
+.plugin {
+ width:220px;
+}
+ 
+.plugin #providers .provider {
+ width:200px;
+ margin-bottom:10px;
+}
+ 
+.plugin #providers .provider .name {
+ display: none;
+}
+ 
+.plugin #providers .provider .button {
+ background: url("http://cdn.oneall.com/img/api/socialize/providers/button/sprite_link_200_30.png") no-repeat scroll 0 0 transparent;
+ height: 30px;
+ width: 200px;
+}
+ 
+.plugin #providers .provider #button_facebook {
+ background-position: 0 0;
+}
+ 
+.plugin #providers .provider #button_google {
+ background-position: 0 -30px;
+}
+ 
+.plugin #providers .provider #button_twitter {
+ background-position: 0 -60px;
+}
+ 
+.plugin #providers .provider #button_yahoo {
+ background-position: 0 -90px;
+}
