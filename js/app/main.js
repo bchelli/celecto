@@ -1,4 +1,4 @@
-define(['app/routers/about', 'app/routers/home', 'app/routers/thread', 'app/models/member', 'app/views/login', 'app/views/header'], function(AboutRouter, HomeRouter, ThreadRouter, member, loginView, headerView){
+define(['app/routers/about', 'app/routers/home', 'app/routers/thread', 'app/routers/shareOffer','app/routers/intro',  'app/models/member', 'app/views/login', 'app/views/header'], function (AboutRouter, HomeRouter, ThreadRouter,ShareOfferRouter, IntroRouter, member, loginView, headerView) {
   "use strict";
 
   return {
@@ -6,7 +6,9 @@ define(['app/routers/about', 'app/routers/home', 'app/routers/thread', 'app/mode
     routers: {
       about: new AboutRouter(),
       home: new HomeRouter(),
-      thread: new ThreadRouter()
+      thread: new ThreadRouter(),
+      shareOfferRouter: new ShareOfferRouter(),
+      introRouter : new IntroRouter()
     },
 
     initialize: function () {

@@ -38,8 +38,9 @@ define(['libs/template', 'app/models/member'], function(tmpl, member){
       ev.preventDefault();
       member.signin({
         email: this.$email.val(),
-        password: this.$password.val()
-      });
+        password: this.$password.val(),
+        rememberMe : this.$rememberMe[0].checked
+        });
     },
 
     openSignup:function(ev){
@@ -85,15 +86,32 @@ define(['libs/template', 'app/models/member'], function(tmpl, member){
 
       this.$email = this.$el.find('#loginEmail');
       this.$password = this.$el.find('#loginPassword');
+      this.$rememberMe = this.$el.find('#rememberMe');
 
       this.$signupNickname = this.$el.find('#signupNickname');
       this.$signupEmail = this.$el.find('#signupEmail');
       this.$signupPassword = this.$el.find('#signupPassword');
       this.$signupRePassword = this.$el.find('#signupRePassword');
 
+      oneall.api.plugins.social_login.build("social_login_container", {
+          'providers': ['facebook', 'google', 'twitter'],
+          'grid_size_x': '1',
+          'css_theme_uri': 'http://www.celecto.com/static/css/application.css',
+          'callback_uri':"http://localhost/api/membership/token?path=" + window.location.href
+      });
     }
-
   });
   
   return new LoginView({el:'#loginPopup'});
 });
+
+
+
+
+
+
+
+
+
+
+

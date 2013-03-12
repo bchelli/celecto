@@ -1,4 +1,4 @@
-define(['app/models/member/signin', 'app/models/member/signout', 'app/models/member/signup'], function(MemberSignin, MemberSignout, MemberSignup){
+define(['app/models/member/signin', 'app/models/member/token', 'app/models/member/signout', 'app/models/member/signup'], function (MemberSignin, MemberToken, MemberSignout, MemberSignup) {
   'use strict';
 
   var Member = Backbone.Model.extend({
@@ -17,20 +17,33 @@ define(['app/models/member/signin', 'app/models/member/signout', 'app/models/mem
       });
     },
 
-    signin: function(data){
-      var self = this
-        , ms = new MemberSignin(data)
+    setToken: function (data) {
+        var self = this
+          , mt = new MemberToken(data)
         ;
-      ms.on('error', function(){
-        self.trigger('login-error');
-      }).on('sync', function(){
-        self.set(ms.toJSON());
-        self.trigger('login-success');
-      });
-      ms.save();
+        mt.on('error', function () {
+            self.trigger('login-error');
+        }).on('sync', function () {
+            self.set(mt.toJSON());
+            self.trigger('login-success');
+        });
+        mt.save();
     },
 
-    signup: function(data){
+    signin: function(data){
+        var self = this
+          , ms = new MemberSignin(data)
+        ;
+        ms.on('error', function(){
+            self.trigger('login-error');
+        }).on('sync', function(){
+            self.set(ms.toJSON());
+            self.trigger('login-success');
+        });
+        ms.save();
+    },
+
+    signup: function (data) {
       var self = this
         , ms = new MemberSignup()
         ;
@@ -77,7 +90,8 @@ define(['app/models/member/signin', 'app/models/member/signout', 'app/models/mem
 
     pushCallback: function(cb){
       if(!this.cbs) this.cbs = [];
-      this.cbs.push(cb);
+      //this.cbs.push(cb);
+      this.cbs[0] = cb;
     },
 
     getCallback: function(){

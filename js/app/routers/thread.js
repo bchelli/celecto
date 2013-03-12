@@ -10,7 +10,8 @@ define(function(){
     openThread: function (thread) {
       require(['app/layouts/thread', 'app/models/thread'], function(threadLayout, Thread) {
         var th = new Thread({'Id':thread});
-        th.on('change', function(){
+        th.on('change', function () {
+          threadLayout.setLayout('thread-detail', 'offres-du-jour');
           threadLayout.render({
             model:th
           });

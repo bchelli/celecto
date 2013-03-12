@@ -4,8 +4,8 @@
   return Backbone.Router.extend({
 
     routes: {
-      "": "listSales",
-	  "offres-precedentes":"listPreviousSales"
+        "offres-du-jour": "listSales",
+        "offres-precedentes": "listPreviousSales"
     },
 
     listSales: function () {
@@ -20,8 +20,7 @@
         })
       });
     },
-    
-	
+    	
 	listPreviousSales: function()  {
 	  require(['app/layouts/home', 'app/collections/previous_threads'], function(homeLayout, threadsCollection) {
         threadsCollection.fetch({

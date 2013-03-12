@@ -20,26 +20,35 @@ define(['libs/template', 'app/models/member', 'libs/page'], function(tmpl, membe
       });
     },
 
+    setLayout: function(layout, hashLocation){
+        this.layout = layout;
+        this.hashLocation = hashLocation;
+    },
+
+    renderForLayout:function(opt,layout, hashLocation)
+    {
+        if(!opt) opt = {};
+        if(!opt.model) opt.model = this.model;
+        this.model = opt.model;
+
+        tmpl.render({
+            $el:this.$el,
+            template:layout,
+            data:{
+                thread:opt.model.toJSON(),
+                isStared:function(){
+                    return _.contains(this.Stars, member.get('Id'));
+                }
+            }
+        });
+
+        page.setPage(hashLocation, this);
+        this.updateCounter();
+    
+    },
+
     render:function(opt){
-
-      if(!opt) opt = {};
-      if(!opt.model) opt.model = this.model;
-      this.model = opt.model;
-
-      tmpl.render({
-        $el:this.$el,
-        template:'thread-detail',
-        data:{
-          thread:opt.model.toJSON(),
-          isStared:function(){
-            return _.contains(this.Stars, member.get('Id'));
-          }
-        }
-      });
-
-      page.setPage('offres-du-jour', this);
-      this.updateCounter();
-
+        this.renderForLayout(opt, this.layout, this.hashLocation);
     },
 
     addComment: function(ev){
@@ -49,7 +58,7 @@ define(['libs/template', 'app/models/member', 'libs/page'], function(tmpl, membe
         , comment = $comment.val()
         , len = comment.length
         ;
-      if(len<=maxLength) {
+      if(len<=maxLength && len > 0) {
         member.needLoggedMember(function(){
           self.model.addComment(comment);
           self.render();

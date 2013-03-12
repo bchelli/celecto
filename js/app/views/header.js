@@ -20,7 +20,7 @@
 
     signout:function(ev){
       ev.preventDefault();
-      member.signout();é
+      member.signout();
     },
 
     signin:function(ev){
@@ -36,21 +36,27 @@
         data:{
           member:member.toJSON(),
           isLogged:member.isLogged(),
-          pages:[
+          pages: [
+            {
+                label: 'Partager une offre',
+                id: 'partager-une-offre',
+                url: '#partager-une-offre'
+            },
             {
               label:'Offres du jour',
               id:'offres-du-jour',
-              url:'#'
+              url: '#offres-du-jour'
             },
+
 		    {
-              label:'Offres précedentes',
+              label:'Offres passées',
               id:'offres-precedentes',
-              url:'#/offres-precedentes'
-            },
+              url:'#offres-precedentes'
+		    },
             {
               label:'A propos',
               id:'about',
-              url:'#/about'
+              url:'#about'
             }
           ],
           isPageSelected:function(){
@@ -58,9 +64,7 @@
           }
         }
       });
-
     }
-
   });
   
   return new HeaderView({el:'#header'});
